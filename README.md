@@ -21,7 +21,7 @@ win the game, and what the star rating was.
     * `js/events.js`: Defines events to be triggered according to user's actions.
     * `js/events-animation.js`: Play animations in response to triggered events
     * `js/events-sound.js`: Play sound effects in response to triggered events
-    * `js/events-game.js`: Define actions in response to user's actions (like clicking cards)
+    * `js/events-game.js`: Defines the matching logic.
 * Sound Files
     * `sound/253168__suntemple__sfx-ui-button-click.wav`
         * [Licensed under the Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/)
