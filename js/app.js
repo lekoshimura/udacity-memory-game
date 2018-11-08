@@ -1,7 +1,10 @@
+/*  General Selectors */
 let container = document.querySelector('.deck');
 let movesField = document.querySelector('.moves');
 let starRatingField = document.querySelector('.score-panel .stars');
 let resetBtn = document.querySelector('.restart');
+
+/* Congratulation Modal Popup Selectors*/
 let congratsModal = document.querySelector('.congrats-modal');
 let congratsTitleBarMsg = document.querySelector('.congrats-title-bar-msg');
 let congratsCloseBtn = document.querySelector('.congrats-close-btn');
@@ -9,6 +12,7 @@ let congratsStarRatingField = document.querySelector('.congrats-box .stars');
 let congratsMsg = document.querySelector('.congrats-msg');
 let congratsPlayAgain = document.querySelector('.congrats-play-again');
 
+/* types of cards */
 const cardValues = [
   'fa-diamond',
   'fa-paper-plane-o',
@@ -39,7 +43,7 @@ class Card {
     li.appendChild(i);
 
     li.addEventListener('click', function() {
-      let event = new CustomEvent('flipping', { detail: this });
+      let event = new CustomEvent('flipping-cards', { detail: this });
       window.dispatchEvent(event);
     }.bind(this));
     return li;
@@ -85,6 +89,22 @@ class Cards {
   }
 }
 
+// events: useful to trigger sounds, animations, etc.
+let events = {
+  matchingCards: function() {
+    let e = new Event('matching-cards');
+    window.dispatchEvent(e);
+  },
+  finalScoreOpening: function(stars) {
+    let e = new CustomEvent('final-score-opening', { detail: stars });
+    window.dispatchEvent(e);
+  },
+  finalScoreClosing: function(stars) {
+    let e = new CustomEvent('final-score-closing');
+    window.dispatchEvent(e);
+  }
+};
+
 let game = {
   reset: function() {
     this.timeStarted = performance.now();
@@ -126,6 +146,9 @@ let game = {
     this.openCards[1].setAsMatch();
     this.openCards = [];
     this.matchingCards += 2;
+
+    // matching event: useful to trigger sounds, animations, etc.
+    events.matchingCards();
   },
   hideNonMatchingCards: function() {
     this.waitForTimeout = true;
@@ -185,6 +208,9 @@ let game = {
     congratsMsg.innerHTML = msg;
     game.displayStarRating(congratsStarRatingField);
     fadeIn(congratsModal, 'flex');
+
+    // trigger event: useful for animations, sound effects, etc.
+    events.finalScoreOpening(this.getRating());
   }
 };
 
@@ -226,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   game.reset();
 
   // * set up the event listener for a card
-  window.addEventListener('flipping', function(e) {
+  window.addEventListener('flipping-cards', function(e) {
     let card = e.detail;
     if (game.waitForTimeout)
       return;
@@ -265,14 +291,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
   // ask if they want to play again. It should also tell the user how much time
   // it took to win the game, and what the star rating was.
   congratsPlayAgain.addEventListener('click', function() {
+    // reset/restart game and closes congratulation popup
     game.reset();
     fadeOut(congratsModal);
+
+    // trigger event: useful for animations, sound effects, etc.
+    events.finalScoreClosing();
   });
   congratsCloseBtn.addEventListener('click', function() {
+    // closes congratulation popup
     fadeOut(congratsModal);
+
+    // trigger event: useful for animations, sound effects, etc.
+    events.finalScoreClosing();
   });
 });
-
 
 /**
  * Effects
