@@ -30,4 +30,5 @@ let events = (function() {
     congratsModalOpening: congratsModalOpening,
     congratsModalClosing: congratsModalClosing
   };
+  
 })();
