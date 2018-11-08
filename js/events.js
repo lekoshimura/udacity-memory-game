@@ -1,7 +1,10 @@
 /*global Event*/
 /*global CustomEvent*/
 
-// events: useful to trigger sounds, animations, etc.
+/**
+ * events{} 
+ * - useful to trigger sounds, animations, etc.
+ * */
 let events = (function() {
 
   let flippingCard = function(card) {

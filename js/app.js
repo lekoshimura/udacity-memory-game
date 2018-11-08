@@ -40,6 +40,12 @@ let globals = {
 
 /* App Behaviour */
 
+/**
+ * reset()
+ * - reset global variables
+ * - create a new array of cards and shuffle them
+ * - clear the current board and places the new arrys of cards
+ * */
 let reset = function() {
   globals.timeStarted = performance.now();
   globals.timeEnded = null;
@@ -53,8 +59,8 @@ let reset = function() {
   globals.cards.build();
   globals.cards.flipAllCardsDown();
   globals.cards.shuffle();
-  
-  movesDisplay();
+
+  displayMoves();
   clearCardsFromContainer();
   addCardsToContainer();
   displayStarRating(starRatingField);
@@ -66,11 +72,11 @@ let reset = function() {
   animationEvents.setCongratsModal(congratsModal);
 };
 
-// Game displays the current number of moves a user has made.
-let movesDisplay = function(increment) {
-  if (increment) {
-    globals.moves++;
-  }
+/**
+ * displayMoves()
+ * - displays the current number of moves a user has made.
+ * */
+let displayMoves = function() {
   movesField.innerHTML = globals.moves;
 };
 
@@ -78,6 +84,10 @@ let clearCardsFromContainer = function() {
   container.innerHTML = '';
 };
 
+/**
+ * addCardsToContainer()
+ * - displays the arrys of cards on the page
+ * */
 let addCardsToContainer = function() {
   let fragment = document.createDocumentFragment();
   for (let i = 0; i < globals.cards.items.length; i++) {
@@ -86,18 +96,26 @@ let addCardsToContainer = function() {
   container.appendChild(fragment);
 };
 
+/**
+ * lockMatchingCards()
+ * - increments the matching cards counter
+ * - trigger matchingCards() event
+ * */
 let lockMatchingCards = function() {
   globals.openCards[0].setAsMatch();
   globals.openCards[1].setAsMatch();
   globals.openCards = [];
   globals.matchingCards += 2;
 
-  // matching event: useful to trigger sounds, animations, etc.
   events.matchingCards();
 };
 
+/**
+ * hideNonMatchingCards()
+ * - "turn down" non-matching cards
+ * */
 let hideNonMatchingCards = function() {
-  this.waitForTimeout = true;
+  globals.waitForTimeout = true;
   window.setTimeout(function() {
     globals.openCards[0].hideSymbol();
     globals.openCards[1].hideSymbol();
@@ -106,6 +124,13 @@ let hideNonMatchingCards = function() {
   }, 1000);
 };
 
+/**
+ * getRating()
+ * - rating is calculated on globals.moves:
+ *   - globals.moves >= 35: 1 star
+ *   - globals.moves >= 25 && globals.moves < 35: 2 stars
+ *   - globals.moves < 25: 3 stars
+ * */ 
 let getRating = function() {
   if (globals.moves >= 35) {
     return 1;
@@ -118,14 +143,19 @@ let getRating = function() {
   }
 };
 
-// Star Rating | The game displays a star rating (from 1 to at least 3) 
-// that reflects the player's performance. At the beginning of a game, 
-// it should display at least 3 stars. After some number of moves, it should 
-// change to a lower star rating. After a few more moves, it should change to
-// a even lower star rating (down to 1). The number of moves needed to change
-// the rating is up to you, but it should happen at some point.
+
+/**
+ * displayStarRating(starContainer)
+ * - parameter starContainer: DOM's parent
+ * 
+ * The game displays a star rating (from 1 to at least 3)
+ * that reflects the player's performance. At the beginning of a game, 
+ * it should display at least 3 stars. After some number of moves, it should 
+ * change to a lower star rating. After a few more moves, it should change to
+ * a even lower star rating (down to 1). The number of moves needed to change
+ * the rating is up to you, but it should happen at some point.
+ * */
 let displayStarRating = function(starContainer) {
-  // debugger;
   let rating = getRating();
   let stars = starContainer.querySelectorAll('i');
   for (let c = 0; c < stars.length; c++) {
@@ -135,13 +165,13 @@ let displayStarRating = function(starContainer) {
   }
 };
 
-// When a user wins the game, a modal appears to congratulate the player and 
-// ask if they want to play again. It should also tell the user how much time
-// it took to win the game, and what the star rating was.
+/**
+ * displayFinalScore()
+ * When a user wins the game, a modal appears to congratulate the player and 
+ * ask if they want to play again. It should also tell the user how much time
+ * it took to win the game, and what the star rating was.
+ * */
 let displayFinalScore = function() {
-  // When a user wins the game, a modal appears to congratulate the player 
-  // and ask if they want to play again. It should also tell the user how much
-  // time it took to win the game, and what the star rating was.
   globals.timeEnded = performance.now();
   let elapasedTimeInSeconds = (globals.timeEnded - globals.timeStarted) / 1000;
   let msg = `<p>You took ${elapasedTimeInSeconds.toFixed(1)} seconds to solve this and won ${getRating()} stars!`;
@@ -192,6 +222,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     events.congratsModalClosing();
   });
 
+
+  // Closes the congratulation modal
   congratsCloseBtn.addEventListener('click', function() {
     events.congratsModalClosing();
   });

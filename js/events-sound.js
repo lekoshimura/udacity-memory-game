@@ -1,5 +1,10 @@
+/**
+ * soundEvents{}
+ * - play sound effects according to triggered events
+ * */
+
 let soundEvents = (function() {
-  
+
   let __soundCardClick, __soundCardMatch, __soundEndingGame;
 
   window.addEventListener('flipping-cards', function() {
@@ -13,7 +18,9 @@ let soundEvents = (function() {
   });
 
   window.addEventListener('congrats-modal-opening', function() {
-    __soundEndingGame.play();
+    setTimeout(function() {
+      __soundEndingGame.play();
+    }, 500);
   });
 
   window.addEventListener('congrats-modal-closing', function() {
@@ -32,7 +39,7 @@ let soundEvents = (function() {
   let setSoundEndingGame = function(el) {
     __soundEndingGame = el;
   };
-  
+
   return {
     setSoundCardClick: setSoundCardClick,
     setSoundCardMatch: setSoundCardMatch,

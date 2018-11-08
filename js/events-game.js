@@ -2,10 +2,15 @@
 /* global globals*/
 /* global lockMatchingCards*/
 /* global hideNonMatchingCards*/
-/* global movesDisplay*/
+/* global displayMoves*/
 /* global displayStarRating*/
 /* global starRatingField*/
 /* global displayFinalScore*/
+
+/**
+ * gameEvents{}
+ * - Define game's behaviour when user click on a card
+ * */
 
 let gameEvents = (function() {
 
@@ -30,7 +35,8 @@ let gameEvents = (function() {
         // - if the cards do not match, remove the cards from the list and hide the card's symbol
         globals.openCards[0].value === globals.openCards[1].value ? lockMatchingCards() : hideNonMatchingCards();
         // - increment the move counter and display it on the page
-        movesDisplay(true); // true: increment moves count
+        globals.moves++;
+        displayMoves(true);
         // - The game displays a star rating
         displayStarRating(starRatingField);
         // - if all cards have matched, display a message with the final score

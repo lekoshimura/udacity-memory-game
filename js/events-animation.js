@@ -1,3 +1,8 @@
+/**
+ * animationEvents{}
+ * - play animations according to triggered events
+ * */
+ 
 let animationEvents = (function() {
   
   let __congratsModal;

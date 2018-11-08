@@ -1,6 +1,12 @@
 /*global events*/
 
-/* types of cards */
+/* types/css-classes of cards */
+
+/**
+ * cardValues[]
+ * - array of types of cards
+ * */
+
 const cardValues = [
   'fa-diamond',
   'fa-paper-plane-o',
@@ -12,15 +18,15 @@ const cardValues = [
   'fa-bomb'
 ];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
+/**
+ * class Card{}
+ * - Represents one card
+ * - constructor():
+ * */
+ 
 class Card {
 
+  // - values: cards's type/css-class. See cardValues[];
   constructor(value) {
     this.value = value;
     this.__element = this.__getHTML();
@@ -69,6 +75,11 @@ class Card {
   
 }
 
+/**
+ * class Cards{}
+ * - Represents an array of cards
+ * */
+
 class Cards {
   
   constructor() {
@@ -79,12 +90,15 @@ class Cards {
     this.items = [];
     for (let i = 0; i <= 1; i++) {
       for (let j = 0; j < cardValues.length; j++)
+      // - loop through each card and create its HTML
+      // - cardValues[j]: cards's type/css-class
         this.items.push(new Card(cardValues[j]));
     }
   }
   
   shuffle() {
-    // Shuffle function from http://stackoverflow.com/a/2450976
+    // - shuffle the list of cards using the provided "shuffle" method below
+    // - shuffle function from http://stackoverflow.com/a/2450976
     var currentIndex = this.items.length,
       temporaryValue, randomIndex;
 

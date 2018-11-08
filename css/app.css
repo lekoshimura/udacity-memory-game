@@ -132,8 +132,23 @@ h1 {
   display: none;
 }
 
-.round-btn {
+.btn {
   cursor: pointer;
+  box-shadow: 3px 4px 5px 0 rgba(46, 61, 73, 0.5);
+  transition: .2s;
+}
+
+.btn:active {
+  -o-transform: translateY(2px);
+  -ms-transform: translateY(2px);
+  -moz-transform: translateY(2px);
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.round-btn {
   display: inline-block;
   text-decoration: none;
   width: 20px;
@@ -144,18 +159,6 @@ h1 {
   font-weight: bold;
   vertical-align: middle;
   overflow: hidden;
-  box-shadow: 3px 4px 5px 0 rgba(46, 61, 73, 0.5);
-  transition: .2s;
-}
-
-.round-btn:active {
-  -o-transform: translateY(2px);
-  -ms-transform: translateY(2px);
-  -moz-transform: translateY(2px);
-  -webkit-transform: translateY(2px);
-  transform: translateY(2px);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  border-bottom: none;
 }
 
 .congrats-box {
