@@ -132,8 +132,9 @@ let hideNonMatchingCards = function() {
  *   - globals.moves >= 35: 1 star
  *   - globals.moves >= 25 && globals.moves < 35: 2 stars
  *   - globals.moves < 25: 3 stars
- * */ 
+ * */
 let getRating = function() {
+  return 2;
   if (globals.moves >= 35) {
     return 1;
   }
@@ -166,7 +167,7 @@ let displayStarRating = function(starContainer) {
     c < rating ? stars[c].classList.add('fa-star') : stars[c].classList.add('fa-star-o');
   }
 };
-
+  
 /**
  * displayFinalScore()
  * When a user wins the game, a modal appears to congratulate the player and 
@@ -175,19 +176,28 @@ let displayStarRating = function(starContainer) {
  * */
 let displayFinalScore = function() {
   globals.timeEnded = performance.now();
+  let rating = getRating();
   let elapasedTimeInSeconds = (globals.timeEnded - globals.timeStarted) / 1000;
   let msg = `<p>You took ${elapasedTimeInSeconds.toFixed(1)} seconds to solve this and won ${getRating()} stars!`;
-  if (getRating() === 3) {
+  if (rating === 3) {
     congratsTitleBarMsg.innerHTML = '&#128514; FANTASTIC!';
   }
-  else if (getRating() === 2) {
+  else if (rating === 2) {
     congratsTitleBarMsg.innerHTML = '&#128516; Great!';
   }
-  else if (getRating() === 1) {
+  else if (rating === 1) {
     congratsTitleBarMsg.innerHTML = '&#9785; Well, well, well...';
   }
   congratsMsg.innerHTML = msg;
   displayStarRating(congratsStarRatingField);
+
+  // add vibrating visual effect to computed stars
+  let stars = congratsStarRatingField.querySelectorAll('i');
+  for (let c = 0; c < stars.length; c++) {
+    if (stars[c].classList.contains('fa-star')) {
+      stars[c].classList.add('vibrate-1');
+    }
+  }
 
   // trigger event: useful for animations, sound effects, etc.
   events.congratsModalOpening(getRating());
