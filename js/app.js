@@ -6,25 +6,25 @@
 
 /*  General Selectors */
 
-let container = document.querySelector('.deck');
-let movesField = document.querySelector('.moves');
-let starRatingField = document.querySelector('.score-panel .stars');
-let resetBtn = document.querySelector('.restart');
+const container = document.querySelector('.deck');
+const movesField = document.querySelector('.moves');
+const starRatingField = document.querySelector('.score-panel .stars');
+const resetBtn = document.querySelector('.restart');
 
 /* Congratulation Modal Popup Selectors*/
 
-let congratsModal = document.querySelector('.congrats-modal');
-let congratsTitleBarMsg = document.querySelector('.congrats-title-bar-msg');
-let congratsCloseBtn = document.querySelector('.congrats-close-btn');
-let congratsStarRatingField = document.querySelector('.congrats-box .stars');
-let congratsMsg = document.querySelector('.congrats-msg');
-let congratsPlayAgain = document.querySelector('.congrats-play-again');
+const congratsModal = document.querySelector('.congrats-modal');
+const congratsTitleBarMsg = document.querySelector('.congrats-title-bar-msg');
+const congratsCloseBtn = document.querySelector('.congrats-close-btn');
+const congratsStarRatingField = document.querySelector('.congrats-box .stars');
+const congratsMsg = document.querySelector('.congrats-msg');
+const congratsPlayAgain = document.querySelector('.congrats-play-again');
 
 /* Sounds and Special Effects Selectors */
 
-let soundCardClick = document.querySelector('.sound-card-click');
-let soundCardMatch = document.querySelector('.sound-cards-match');
-let soundEndingGame = document.querySelector('.sound-ending-game');
+const soundCardClick = document.querySelector('.sound-card-click');
+const soundCardMatch = document.querySelector('.sound-cards-match');
+const soundEndingGame = document.querySelector('.sound-ending-game');
 
 /* Game global vars */
 
@@ -134,7 +134,6 @@ let hideNonMatchingCards = function() {
  *   - globals.moves < 25: 3 stars
  * */
 let getRating = function() {
-  return 2;
   if (globals.moves >= 35) {
     return 1;
   }
