@@ -30,6 +30,10 @@ let gameEvents = (function() {
         globals.openCards.push(card);
         break;
       case 1:
+        //if the clicked card is the same, skip this
+        if (globals.openCards[0] === card) {
+          return;
+        }
         globals.openCards.push(card);
         // - if the cards do match, lock the cards in the open position
         // - if the cards do not match, remove the cards from the list and hide the card's symbol
