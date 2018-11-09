@@ -35,6 +35,7 @@ let globals = {
   openCards: [],
   waitForTimeout: false,
   matchingCards: 0,
+  status: null,
   cards: null
 };
 
@@ -53,6 +54,7 @@ let reset = function() {
   globals.openCards = [];
   globals.waitForTimeout = false;
   globals.matchingCards = 0;
+  globals.status = 'ready';
 
   globals.cards = null;
   globals.cards = new Cards();

@@ -9,7 +9,7 @@
 
 /**
  * gameEvents{}
- * - Define game's behaviour when user click on a card
+ * - Defines the matching logic
  * */
 
 let gameEvents = (function() {
@@ -20,7 +20,7 @@ let gameEvents = (function() {
 
   let flippingCards = function(e) {
     let card = e.detail;
-    if (globals.waitForTimeout)
+    if (globals.waitForTimeout || globals.status !== 'ready')
       return;
     // - display the card's symbol
     card.displaySymbol();
@@ -40,9 +40,11 @@ let gameEvents = (function() {
         // - The game displays a star rating
         displayStarRating(starRatingField);
         // - if all cards have matched, display a message with the final score
+        // - end the game
         if (globals.matchingCards === globals.cards.items.length) {
           globals.timeEnded = performance.now();
           displayFinalScore();
+          globals.status = 'ended';
         }
         break;
       default:
