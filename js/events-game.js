@@ -27,6 +27,9 @@ let gameEvents = (function() {
     // - add the card to a *list* of "open" cards
     switch (globals.openCards.length) {
       case 0:
+        // - increment the move counter and display it on the page
+        globals.moves++;
+        displayMoves(true);
         globals.openCards.push(card);
         break;
       case 1:
