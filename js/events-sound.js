@@ -44,6 +44,6 @@ let soundEvents = (function() {
     setSoundCardClick: setSoundCardClick,
     setSoundCardMatch: setSoundCardMatch,
     setSoundEndingGame: setSoundEndingGame
-  }
+  };
 
 })();

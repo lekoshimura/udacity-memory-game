@@ -36,6 +36,6 @@ let animationEvents = (function() {
 
   return {
     setCongratsModal: setCongratsModal
-  }
+  };
   
 })();
