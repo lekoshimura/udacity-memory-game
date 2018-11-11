@@ -17,8 +17,7 @@ body {
 }
 
 body {
-  background: #ffffff url('../img/geometry2.png');
-  /* Background pattern from Subtle Patterns */
+  background: #ffffff;
   font-family: 'Coda', cursive;
 }
 
@@ -41,10 +40,14 @@ h1 {
 .deck {
   width: 660px;
   min-height: 680px;
-  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  background: rgb(255,255,255);
+  background: rgba(255,255,255,0.2);
+  border-color: lightgray;
+  border-width: 1px;
+  border-style: solid;
   padding: 32px;
   border-radius: 10px;
-  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  /*box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);*/
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -55,7 +58,8 @@ h1 {
 .deck .card {
   height: 125px;
   width: 125px;
-  background: #2e3d49;
+  /*background: #2e3d49;*/
+  background: #212121;
   font-size: 0;
   color: #ffffff;
   border-radius: 8px;
@@ -118,6 +122,20 @@ h1 {
 /*                 |___/  
 /*
 /******************************************************************************/
+
+.bg-image {
+  background-image: url('../img/black-and-white-buildings-city-2255.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .modal {
   position: absolute;

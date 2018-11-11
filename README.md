@@ -22,6 +22,11 @@ win the game, and what the star rating was.
     * `js/events-animation.js`: Play animations in response to triggered events
     * `js/events-sound.js`: Play sound effects in response to triggered events
     * `js/events-game.js`: Defines the matching logic.
+* Image Files
+    * `img/black-and-white-buildings-city-2255.jpg`
+        * [CC0 License](https://www.pexels.com/creative-commons-images/)
+        * No attribution required
+        * found at: <https://www.pexels.com/photo/black-and-white-city-houses-skyline-2255/>
 * Sound Files
     * `sound/253168__suntemple__sfx-ui-button-click.wav`
         * [Licensed under the Creative Commons 0 License](https://creativecommons.org/publicdomain/zero/1.0/)
