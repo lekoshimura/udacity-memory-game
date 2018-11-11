@@ -58,6 +58,15 @@
     </div>
   </div>
 
+  <script>
+    let w = document.querySelectorAll('.flip-card');
+    for (var i = 0; i < w.length; i++) {
+      w[i].addEventListener('click', function() {
+        this.classList.toggle('is-flipped');
+      });
+    }
+  </script>
+
   <audio class="sound-card-click" src="sound/253168__suntemple__sfx-ui-button-click.wav" preload="auto" type="audio/wav">
     Your browser does not support the audio element.
   </audio>

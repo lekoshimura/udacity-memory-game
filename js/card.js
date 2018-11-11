@@ -35,7 +35,7 @@ class Card {
     // - https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
     this.__callFlippingCardEvent = function() {
       events.flippingCard(this);
-    }
+    };
     this.__callFlippingCardEventHandler = this.__callFlippingCardEvent.bind(this);
     this.__element.addEventListener('click', this.__callFlippingCardEventHandler);
   }
@@ -47,13 +47,57 @@ class Card {
     <i class="fa fa-diamond"></i>
     </li>
     */
-    let li = document.createElement('li');
+
+
+    // let li = document.createElement('li');
+    // let i = document.createElement('i');
+    // li.classList.add('card');
+    // i.classList.add('fa');
+    // i.classList.add(this.value);
+    // li.appendChild(i);
+    // return li;
+
+    /*    
+    <div class="flip-scene">
+      <div class="flip-card">
+        <div class="flip-front">
+          <li class="card"></li>
+        </div>
+        <div class="flip-back">
+          <li class="card open">
+            <i class="fa fa-bomb"></i>
+          </li>
+        </div>
+      </div>
+    </div>
+    */
+
+    let divFlipScene = document.createElement('div');
+    let divFlipCard = document.createElement('div');
+    let divFlipFront = document.createElement('div');
+    let divFlipBack = document.createElement('div');
+    let liFront = document.createElement('li');
+    let liBack = document.createElement('li');
     let i = document.createElement('i');
-    li.classList.add('card');
+
+    divFlipScene.classList.add('flip-scene');
+    divFlipCard.classList.add('flip-card');
+    divFlipFront.classList.add('flip-front');
+    divFlipBack.classList.add('flip-back');
+    liFront.classList.add('card');
+    liBack.classList.add('card');
+    liBack.classList.add('open');
     i.classList.add('fa');
     i.classList.add(this.value);
-    li.appendChild(i);
-    return li;
+
+    liBack.appendChild(i);
+    divFlipBack.appendChild(liBack);
+    divFlipFront.appendChild(liFront);
+    divFlipCard.appendChild(divFlipBack);
+    divFlipCard.appendChild(divFlipFront);
+    divFlipScene.appendChild(divFlipCard);
+
+    return divFlipScene;
   }
 
   getElement() {
@@ -61,23 +105,24 @@ class Card {
   }
 
   displaySymbol() {
-    this.__element.classList.add('open');
-    this.__element.classList.add('show');
+    this.__element.querySelector('.flip-card').classList.add('is-flipped');
   }
 
   hideSymbol() {
-    this.__element.classList.remove('open');
-    this.__element.classList.remove('show');
+    this.__element.querySelector('.flip-card').classList.remove('is-flipped');
   }
 
   setAsMatch() {
-    this.__element.classList.add('match');
     this.__element.style.cursor = 'default';
     this.__element.removeEventListener('click', this.__callFlippingCardEventHandler);
+    this.__element.classList.add('wobble-hor-bottom');
+    setTimeout(function() {
+      this.__element.querySelector('li').classList.add('match');
+    }.bind(this), 500);
   }
 
   unsetAsMatch() {
-    this.__element.classList.remove('match');
+    this.__element.querySelector('li').classList.remove('match');
   }
 
 }

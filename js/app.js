@@ -70,7 +70,6 @@ let reset = function() {
   soundEvents.setSoundCardClick(soundCardClick);
   soundEvents.setSoundCardMatch(soundCardMatch);
   soundEvents.setSoundEndingGame(soundEndingGame);
-
   animationEvents.setCongratsModal(congratsModal);
 };
 

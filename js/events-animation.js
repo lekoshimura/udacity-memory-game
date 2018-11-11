@@ -20,6 +20,7 @@ let animationEvents = (function() {
   };
 
   let fadeInCongratsModal = function() {
+    console.log('fadeInCongratsModal');
     __congratsModal.style.display = 'flex';
     __congratsModal.classList.remove('fade-out');
     __congratsModal.classList.add('fade-in');
