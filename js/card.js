@@ -42,21 +42,6 @@ class Card {
 
 
   __getHTML() {
-    /*
-    <li class="card">
-    <i class="fa fa-diamond"></i>
-    </li>
-    */
-
-
-    // let li = document.createElement('li');
-    // let i = document.createElement('i');
-    // li.classList.add('card');
-    // i.classList.add('fa');
-    // i.classList.add(this.value);
-    // li.appendChild(i);
-    // return li;
-
     /*    
     <div class="flip-scene">
       <div class="flip-card">
