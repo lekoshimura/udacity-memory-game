@@ -41,9 +41,9 @@ let soundEvents = (function() {
   };
 
   return {
-    setSoundCardClick: setSoundCardClick,
-    setSoundCardMatch: setSoundCardMatch,
-    setSoundEndingGame: setSoundEndingGame
+    setSoundCardClick,
+    setSoundCardMatch,
+    setSoundEndingGame
   };
 
 })();

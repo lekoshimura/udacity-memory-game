@@ -29,7 +29,8 @@ class Card {
   // - values: cards's type/css-class. See cardValues[];
   constructor(value) {
     this.value = value;
-    this.__element = this.__getHTML();
+    this.__element = document.createElement('div');
+    this.__element.innerHTML = this.__getHTML();
 
     // As seguintes linhas, são por causa disso:
     // - https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
@@ -42,7 +43,7 @@ class Card {
 
 
   __getHTML() {
-    /*    
+    return `
     <div class="flip-scene">
       <div class="flip-card">
         <div class="flip-front">
@@ -54,35 +55,7 @@ class Card {
           </li>
         </div>
       </div>
-    </div>
-    */
-
-    let divFlipScene = document.createElement('div');
-    let divFlipCard = document.createElement('div');
-    let divFlipFront = document.createElement('div');
-    let divFlipBack = document.createElement('div');
-    let liFront = document.createElement('li');
-    let liBack = document.createElement('li');
-    let i = document.createElement('i');
-
-    divFlipScene.classList.add('flip-scene');
-    divFlipCard.classList.add('flip-card');
-    divFlipFront.classList.add('flip-front');
-    divFlipBack.classList.add('flip-back');
-    liFront.classList.add('card');
-    liBack.classList.add('card');
-    liBack.classList.add('open');
-    i.classList.add('fa');
-    i.classList.add(this.value);
-
-    liBack.appendChild(i);
-    divFlipBack.appendChild(liBack);
-    divFlipFront.appendChild(liFront);
-    divFlipCard.appendChild(divFlipBack);
-    divFlipCard.appendChild(divFlipFront);
-    divFlipScene.appendChild(divFlipCard);
-
-    return divFlipScene;
+    </div>`;
   }
 
   getElement() {
