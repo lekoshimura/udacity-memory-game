@@ -51,7 +51,7 @@ class Card {
         </div>
         <div class="flip-back">
           <li class="card open">
-            <i class="fa fa-bomb"></i>
+            <i class="fa ${this.value}"></i>
           </li>
         </div>
       </div>
